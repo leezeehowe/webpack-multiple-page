@@ -77,6 +77,6 @@ class HttpRequest {
       this.interceptors(instance, options.url)
       return instance(options)
     }
-  }
+}
 
 export default new HttpRequest('localhost')

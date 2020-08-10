@@ -5,7 +5,7 @@ const { merge } = require('webpack-merge')
 module.exports = merge(webpackBase, {
     mode: 'production',
     output: {
-        filename: 'public/js/[name].bundle.[chunkHash].js'
+        filename: 'public/js/[name].bundle.[contentHash].js'
     },
     module: {
         rules: [
@@ -30,17 +30,5 @@ module.exports = merge(webpackBase, {
         new MiniCssExtractPlugin({
             filename: 'public/style/[name].[contentHash].css'
         })
-    ],
-    optimization: {
-        splitChunks: {
-            chunks: 'async',
-            minSize: 100,
-            minChunks: 1,
-            cacheGroups: {
-                "vendors": {
-                    test: /node_modules/
-                }
-            }
-        }
-    }
+    ]
 })

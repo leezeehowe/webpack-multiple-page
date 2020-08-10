@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const WebpackManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = merge(webpackBase, {
+    mode: 'development',
     devtool: 'inline-source-map',
     output: {
         // webpack-dev-server只支持[hash]，不知道为何
@@ -18,6 +19,11 @@ module.exports = merge(webpackBase, {
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
+                            /**
+                             * return `${
+                                esModule ? 'export default' : 'module.exports ='
+                                } ${JSON.stringify(encodedData)}`;
+                             */
                             esModule: true,
                             hmr: true
                         }
@@ -40,8 +46,5 @@ module.exports = merge(webpackBase, {
         compress: true,
         port: 80,
         writeToDisk: true
-    },
-    optimization: {
-        minimize: false
     }
 })
